@@ -90,10 +90,48 @@ def subs_regressiva(A, verbose=False):
             print("(%.6g - (%s) )/ %.6g = %.6g" % (A[i,n], strsoma, A[i,i], x[i]))
         if verbose: print(x, "\n")
         
-        return x
+    return x
     
     
+
+
+def subs_progressiva(A, verbose=False):
+
+    n=len(A)
+
+            
+    #Não posso inicar a substituição regressiva
+    if A[0, 0] == 0:
+        sys.exit("A[%d, %d] = 0, Não existe solução única" % (0, 0))
+        
+    if verbose:
+        print("\n\n--------------------")
+        print("Substituicão Progressiva\n")
+        
+        
+    x = [0]*n
+    x[0] = A[0, n]/A[0, 0]
     
+    if verbose:
+        print("x_%d = %.6g / %.6g = %.6g" % (0, A[0, n], A[0, 0], x[0]))
+        
+    for i in range(1, n, 1):
+        s = 0
+        strsoma = ""
+        if verbose: print("x_%d = " % (i), end ='')
+        for j in range(i-1, -1, -1):
+            s+= A[i,j]*x[j]
+            if verbose: strsoma += "%.6g x_%d + " % (A[i,j], j)
+        x[i] = (A[i,n] - s)/A[i,i]
+        
+        if verbose: 
+            print("(%.6g - (%s) )/ %.6g = %.6g" % (A[i,n], strsoma, A[i,i], x[i]))
+        if verbose: print(x, "\n")
+        
+    return x
+    
+    
+
 
 def eliminacao_guassiana(A, verbose=False):
     """
