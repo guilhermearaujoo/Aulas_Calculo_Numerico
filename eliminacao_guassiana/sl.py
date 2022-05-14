@@ -6,7 +6,17 @@ Created on Mon May  2 20:38:06 2022
 @author: guilherme
 """
 
-def escalona(A, verbose=False):
+def escalona(A, tol=1.0e-10, verbose=False):
+    
+    """
+    Input:
+        A: a amtriz a ser escalonada
+        tol: tolerância numérica suportada 
+        verbose: se TRUE imprime o passo a passso da função
+        
+    Return:
+        A: a matriz A escalonada
+    """
     
     n=len(A)
     
@@ -23,9 +33,9 @@ def escalona(A, verbose=False):
         
         #Procuro um Pivô 
         p=c
-        while A[p,c]==0 and p<n-1:
+        while abs(A[p,c])<tol and p<n-1:
             p+=1
-        if A[p,c] == 0:
+        if abs(A[p,c])<tol:
             sys.exit("O Pivo é nulo o algoritimo falha\n")
         
         
@@ -39,7 +49,8 @@ def escalona(A, verbose=False):
                 if verbose:
                     print("Pivo A[%d,%d] = %.6g, trocando as linhas %d <=> %d\n"
                           % (p, c, A[p,c], p, c))
-                x = A[c].copy()
+                x = -A[c].copy()
+
                 A[c] = A[p]
                 A[p] = x
             
@@ -51,7 +62,7 @@ def escalona(A, verbose=False):
                 A[l] = A[l] - coef*A[c] 
             if verbose: print(A, "\n\n")
             
-        return A 
+    return A 
     
 
 
@@ -88,7 +99,7 @@ def subs_regressiva(A, verbose=False):
         
         if verbose: 
             print("(%.6g - (%s) )/ %.6g = %.6g" % (A[i,n], strsoma, A[i,i], x[i]))
-        if verbose: print(x, "\n")
+        if verbose: print("{} \n".format(x))
         
     return x
     
@@ -126,7 +137,7 @@ def subs_progressiva(A, verbose=False):
         
         if verbose: 
             print("(%.6g - (%s) )/ %.6g = %.6g" % (A[i,n], strsoma, A[i,i], x[i]))
-        if verbose: print(x, "\n")
+        if verbose: print("{} \n".format(x))
         
     return x
     
@@ -152,3 +163,27 @@ def eliminacao_guassiana(A, verbose=False):
     
 
     return(x)
+
+
+
+def Octave(A, n):
+    """
+    input: 
+        n: número de linhas da matriz A
+        A: matriz escalonada
+    
+    return:
+        det: Determinante da matriz A
+    """
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -8,7 +8,8 @@ assert len(sys.argv) == 2, "Número errado de argumentos"
 ifile = sys.argv[1]
 
 A = np.loadtxt(ifile, dtype=float)
+print(A)
 
-print(sl.eliminacao_guassiana(A, True))
+print(sl.escalona(A, verbose=True))
 
 
