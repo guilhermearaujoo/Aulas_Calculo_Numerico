@@ -47,8 +47,8 @@ class Numero():
             dec += dic.index(i) * self.base_original**(x)
 
         #retorna um Numero do numero original convertido para base 10
-        numero_retorno = Numero(str(dec), 10)
-        return numero_retorno
+        
+        return Numero(str(dec), 10)
 
 
     def to_any(self, base_final):
@@ -82,8 +82,8 @@ class Numero():
             numero_final += dic[i]  
 
         # retorna um classe Numero do numero original para a base final
-        numero_retorno = Numero(numero_final, base_final)
-        return numero_retorno
+        
+        return Numero(numero_final, base_final)
 
 
     def next(self):
@@ -124,7 +124,7 @@ class Numero():
         assert(self.base_original == other.base_original), "Os números precisam ter a mesma base"
 
         # soma duas classes
-        num_temp = int(self.to_decimal().numero) + int(other.to_decimal().numero)
+        num_temp = int(self.to_decimal()) + int(other.to_decimal())
         
         soma_temp = Numero(str(num_temp), 10)
         soma_final = soma_temp.to_any(self.base_original)
@@ -165,3 +165,11 @@ class Numero():
 
     def __str__(self):
         return f"numero: {self.numero} base: {self.base_original}"
+
+
+n1 = Numero('10', 10)
+n2 = Numero('1', 10)
+
+n3 = n1+n2
+ 
+print(n3.to_any(16))
