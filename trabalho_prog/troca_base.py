@@ -49,4 +49,6 @@ def troca_base(base_original,base_final, num_original):
     return num_final
 
 
+
+
 print(troca_base(10, 18, '100'))
